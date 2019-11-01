@@ -8,54 +8,230 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
 </head>
 <body class="webticker">
+<header class="htmleaf-header">
+	<h1>强大的jQuery跑马灯插件 <span>A jQuery web ticker</span></h1>
+	<div class="htmleaf-links">
+		<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+		<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/Layout-Interface/201607213760.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+	</div>
+</header>
+<!--[if lte IE 9]>
+  <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 <div class="perspective">
-    <div class="perspective-container">
+<div class="perspective-container">
 
-        <div class="ticker-content container">
-            <div class="clearfix">
+<div class="ticker-content container">
+<div class="clearfix">
 
-                <div class="col-9 last html-content">
-                    <div class="ticker-wrapper">
-                        <ul id="webticker-update-example">
-                            <li data-update="item1">WebTicker v3.0.0 has just been released! Read the new documentation.</li>   
-                            <li data-update="item2">WebTicker v3.0.0 now has commercial licenses available</li>
-                        </ul>
-                    </div>
+<div class="col-9 last html-content">
+<h2>Examples</h2>
 
-                    <div class="ticker-wrapper">
-                        <ul id="webticker-stop-continue-example">
-                            <li data-update="item1">WebTicker v3.0.0 has just been released! </li>  
-                            <li data-update="item2">These items will be constantly repeated.</li>
-                        </ul>
-                    </div>
+<p>Below are examples of different methods that can be used with the web ticker.</p>
 
-                    <div class="ticker-controls">
-                        <ul>
-                            <li><a id="stop-newsticker2">Stop first ticker</a></li>
-                            <li><a id="continue-newsticker2">Continue first ticker</a></li>
-                        </ul>
-                    </div>
+<h3 id="update">Example 1: Updating the Ticker Content</h3>
 
-                    <div class="ticker-wrapper">
-                        <ul id="webticker-transition-ease">
-                            <li data-update="item1">Maze Digital - Crafting Digital Experiences</li>    
-                            <li data-update="item2">Web Ticker v3.0.0 another digital experience crafted by Maze Digital</li>
-                        </ul>
-                    </div>
-
-                    <div class="ticker-wrapper">
-                        <ul id="right-to-left-webticker" dir="ltr">
-                            <li data-update="item1"> وقد تم الافراج عن عادل WebTicker 3.0.0! الرخص التجارية المتاحة.</li>   
-                            <li data-update="item2"> WebTicker 3.0.0 עתה שוחרר! רישיונות מסחריים זמינים.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="ticker-wrapper">
+    <ul id="webticker-update-example">
+        <li data-update="item1">WebTicker v3.0.0 has just been released! Read the new documentation.</li>   
+        <li data-update="item2">WebTicker v3.0.0 now has commercial licenses available</li>
+    </ul>
 </div>
+
+<div class="ticker-controls">
+    <ul>
+        <li><a id="update-newsticker1">Update first ticker</a></li>
+    </ul>
+</div>
+
+<h4>HTML</h4>
+
+<p>The Markup Used for Initializing the Web Ticker</p>
+
+<pre><code class="html">&lt;ul id="webticker-update-example" &gt;
+    &lt;li data-update="item1"&gt;WebTicker v3.0.0 has just been released! Read the new documentation.&lt;/li&gt;   
+    &lt;li data-update="item2"&gt;WebTicker v3.0.0 now has commercial licenses available. Check which license is applicable for you.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h4>Starting the Web Ticker</h4>
+
+<p>The first ticker is running the default options with an exception to the height, which is being set to 75px.</p>
+
+<pre><code>$("#webticker-update-example").webTicker({
+    height:'75px'
+});
+</code></pre>
+
+<h4>Updating the Data</h4>
+
+<p>The update method is called using the below trigger.</p>
+
+<pre><code class="javascript">
+$("#update-newsticker1").click(function(){
+    $("#webticker-update-example").webTicker('update',
+        '&lt;li data-update="item1"&gt;Web Ticker v3.0.0 has just been released! And the documentation has become even better!&lt;/li&gt; 
+         &lt;li data-update="item2"&gt;The Web Ticker v3.0.0 commercial license no longer binds you to make your projects open source.&lt;/li&gt; 
+         &lt;li data-update="item3"&gt;An OEM License is also available if your would like to make the WebTicker part of your website builder&lt;/li&gt;
+         &lt;li data-update="item4"&gt;Maze Digital will now be commercially supporting the Web Ticker&lt;/li&gt;',
+        'swap',
+        true,
+        false
+    );
+});
+</code></pre>
+
+<h3 id="stop-cont">Example 2: Stop/Continue Ticker Scrolling</h3>
+
+<div class="ticker-wrapper">
+    <ul id="webticker-stop-continue-example">
+        <li data-update="item1">WebTicker v3.0.0 has just been released! </li>  
+        <li data-update="item2">These items will be constantly repeated.</li>
+    </ul>
+</div>
+
+<div class="ticker-controls">
+    <ul>
+        <li><a id="stop-newsticker2">Stop first ticker</a></li>
+        <li><a id="continue-newsticker2">Continue first ticker</a></li>
+    </ul>
+</div>
+
+<h4>Settings Used</h4>
+
+<p>The second ticker is using some of the available options; such as having hover-pause disabled, transition set to ‘ease’ and ‘duplicate’ set to true.</p>
+
+<pre><code>
+$("#webticker-stop-continue-example").webTicker({
+    height:'75px', 
+    duplicate:true, 
+    rssfrequency:0, 
+    startEmpty:false, 
+    hoverpause:false, 
+    transition: "ease"
+}); 
+</code></pre>
+
+<h4>Methods Used</h4>
+
+<p>The stop method is called using:</p>
+
+<pre><code class="javascript">
+$("#stop-newsticker2").click(function(){
+    $("#webticker-stop-continue-example").webTicker('stop');
+});
+</code></pre>
+
+<p>The continue method is called using:</p>
+
+<pre><code class="javascript">
+$("#continue-newsticker2").click(function(){
+    $("#webticker-stop-continue-example").webTicker('cont');
+});
+</code></pre>
+
+<h3 id="transitions">Example 3: Transition Easing</h3>
+
+<div class="ticker-wrapper">
+    <ul id="webticker-transition-ease">
+        <li data-update="item1">Maze Digital - Crafting Digital Experiences</li>    
+        <li data-update="item2">Web Ticker v3.0.0 another digital experience crafted by Maze Digital</li>
+    </ul>
+</div>
+
+<div class="ticker-controls">
+    <ul>
+        <li><a id="linear-financeticker">Transition Linear</a></li>
+        <li><a id="ease-financeticker">Transision Ease</a></li>
+    </ul>
+</div>
+
+<h4>Methods Used</h4>
+
+<p>The ease transition method is called using:</p>
+
+<pre><code class="javascript">    
+$("#ease-financeticker").click(function(){
+     $("#webticker-transition-ease").webTicker('transition', 'ease');
+});
+</code></pre>
+
+<p>The linear transition method is called using:</p>
+
+<pre><code class="javascript">    
+$("#linear-financeticker").click(function(){
+    $("#webticker-transition-ease").webTicker('transition', 'linear');
+});
+</code></pre>
+
+<h3 id="right-to-left">Example 4: Right-to-left</h3>
+
+<div class="ticker-wrapper">
+    <ul id="right-to-left-webticker" dir="ltr">
+        <li data-update="item1"> وقد تم الافراج عن عادل WebTicker 3.0.0! الرخص التجارية المتاحة.</li>   
+        <li data-update="item2"> WebTicker 3.0.0 עתה שוחרר! רישיונות מסחריים זמינים.</li>
+    </ul>
+</div>
+
+<h4>HTML</h4>
+
+<pre><code>&lt;ul id="right-to-left-webticker" dir="ltr"&gt;
+    &lt;li data-update="item1"&gt; وقد تم الافراج عن عادل WebTicker 3.0.0! الرخص التجارية المتاحة.&lt;/li&gt;   
+    &lt;li data-update="item2"&gt; WebTicker 3.0.0 עתה שוחרר! רישיונות מסחריים זמינים.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h4>Settings Used</h4>
+
+<p>The ticker can be set to scroll from left to right using the following initializing settings.</p>
+
+<pre><code>$("#right-to-left-webticker").webTicker({
+    height:'75px', 
+    direction: 'right'
+});
+</code></pre>
+
+<h3 id="images">Example 5: Images</h3>
+
+<div class="ticker-wrapper images">
+    <ul id="images-webticker">
+        <li>
+            <img style="width:200px; height: 150px;" src="img/MER_800_600.jpg">
+        </li>
+    </ul>
+</div>
+
+<h4>HTML</h4>
+
+<p>The fifth ticker includes images instead of plain text.</p>
+
+<pre><code class="html">&lt;div class="ticker-wrapper"&gt;
+    &lt;ul id="images-webticker"&gt;
+        &lt;li&gt;
+            &lt;img style='width:200px; height: 150px;' src="img/MER_800_600.jpg"/&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="rss">Example 6: RSS</h3>
+
+<p>Rss Feeds are automatically supported by the ticker; note that as per javascript cross-domain restrictions you can only load RSS feeds from your own website.</p>
+
+<pre><code>$("#webticker").webTicker({
+    rssurl:'http://maze.digital/rss/', 
+    rssfrequency:5
+});
+</code></pre>
+</div>
+</div></div></div>
+
 	
 	<script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
